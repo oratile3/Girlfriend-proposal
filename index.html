@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#ff5f8f" />
+  <title>For My Favourite Person ❤️</title>
+  <style>
+    :root{
+      --pink:#ff5f8f;
+      --pink-dark:#e63f73;
+      --cream:#fff8f4;
+      --text:#442532;
+      --card:rgba(255,255,255,.82);
+      --shadow:0 18px 50px rgba(123,35,70,.18);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top left, #ffd7e5 0, transparent 38%),
+        radial-gradient(circle at bottom right, #ffe9bf 0, transparent 35%),
+        linear-gradient(135deg,#fff8f4,#ffeef4);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    .floating-hearts{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      overflow:hidden;
+      z-index:0;
+    }
+
+    .heart{
+      position:absolute;
+      bottom:-40px;
+      font-size:22px;
+      opacity:.45;
+      animation:floatUp linear infinite;
+    }
+
+    @keyframes floatUp{
+      from{transform:translateY(0) rotate(0deg)}
+      to{transform:translateY(-115vh) rotate(360deg)}
+    }
+
+    main{position:relative;z-index:1}
+
+    .hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:40px 20px;
+    }
+
+    .hero-card{
+      width:min(900px,100%);
+      background:var(--card);
+      backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.75);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      padding:56px 28px;
+    }
+
+    .eyebrow{
+      font-size:.88rem;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      color:var(--pink-dark);
+      font-weight:700;
+    }
+
+    h1{
+      font-family:Georgia, 'Times New Roman', serif;
+      font-size:clamp(2.8rem,8vw,6rem);
+      line-height:.95;
+      margin:18px 0;
+    }
+
+    .highlight{color:var(--pink)}
+
+    .hero p{
+      width:min(620px,100%);
+      margin:0 auto 30px;
+      font-size:clamp(1.05rem,2.4vw,1.35rem);
+      line-height:1.7;
+    }
+
+    .btn{
+      display:inline-block;
+      border:0;
+      border-radius:999px;
+      padding:15px 24px;
+      font-size:1rem;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      transition:.2s ease;
+    }
+
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg,var(--pink),var(--pink-dark));
+      box-shadow:0 12px 26px rgba(230,63,115,.28);
+    }
+
+    .btn:hover{transform:translateY(-2px) scale(1.02)}
+
+    section{
+      width:min(1050px,calc(100% - 32px));
+      margin:0 auto 80px;
+    }
+
+    .section-title{
+      text-align:center;
+      font-family:Georgia, 'Times New Roman', serif;
+      font-size:clamp(2rem,5vw,3.4rem);
+      margin-bottom:12px;
+    }
+
+    .section-subtitle{
+      text-align:center;
+      max-width:650px;
+      margin:0 auto 34px;
+      line-height:1.7;
+      opacity:.82;
+    }
+
+    .gallery{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .photo-card{
+      min-height:330px;
+      border-radius:24px;
+      background:
+        linear-gradient(rgba(255,95,143,.12),rgba(255,95,143,.12)),
+        url('https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=900&q=80')
+        center/cover;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+
+    .photo-card:nth-child(2){
+      background-image:
+        linear-gradient(rgba(255,95,143,.10),rgba(255,95,143,.10)),
+        url('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=900&q=80');
+    }
+
+    .photo-card:nth-child(3){
+      background-image:
+        linear-gradient(rgba(255,95,143,.10),rgba(255,95,143,.10)),
+        url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=900&q=80');
+    }
+
+    .photo-card span{
+      position:absolute;
+      left:16px;
+      right:16px;
+      bottom:16px;
+      background:rgba(255,255,255,.84);
+      backdrop-filter:blur(8px);
+      border-radius:16px;
+      padding:14px;
+      font-weight:700;
+      text-align:center;
+    }
+
+    .reasons{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .reason{
+      background:var(--card);
+      border:1px solid rgba(255,255,255,.9);
+      border-radius:22px;
+      padding:28px 22px;
+      box-shadow:var(--shadow);
+      text-align:center;
+    }
+
+    .reason .icon{font-size:2rem}
+    .reason h3{margin:12px 0 8px}
+    .reason p{line-height:1.6;margin:0;opacity:.82}
+
+    .letter{
+      background:var(--card);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+      padding:clamp(26px,6vw,60px);
+      font-family:Georgia, 'Times New Roman', serif;
+      font-size:1.18rem;
+      line-height:1.9;
+    }
+
+    .signature{
+      margin-top:28px;
+      color:var(--pink-dark);
+      font-weight:700;
+      font-size:1.25rem;
+    }
+
+    .proposal{
+      text-align:center;
+      background:linear-gradient(145deg,#fff,#ffe6ef);
+      border-radius:32px;
+      box-shadow:var(--shadow);
+      padding:clamp(38px,8vw,80px) 20px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .proposal h2{
+      font-family:Georgia, 'Times New Roman', serif;
+      font-size:clamp(2.3rem,6vw,4.6rem);
+      margin:0 0 16px;
+    }
+
+    .proposal p{
+      font-size:1.2rem;
+      line-height:1.7;
+      max-width:640px;
+      margin:0 auto 28px;
+    }
+
+    .button-zone{
+      min-height:110px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      gap:16px;
+      position:relative;
+    }
+
+    #yesBtn{font-size:1.15rem;padding:16px 30px}
+    #noBtn{
+      background:#fff;
+      color:var(--text);
+      border:1px solid #e8bac9;
+      position:relative;
+    }
+
+    .result{
+      display:none;
+      margin-top:24px;
+      font-size:clamp(1.5rem,4vw,2.5rem);
+      font-family:Georgia, 'Times New Roman', serif;
+      color:var(--pink-dark);
+      font-weight:700;
+    }
+
+    footer{
+      text-align:center;
+      padding:20px 20px 50px;
+      opacity:.7;
+    }
+
+    .confetti{
+      position:fixed;
+      top:-20px;
+      width:10px;
+      height:16px;
+      z-index:999;
+      animation:fall 3.2s linear forwards;
+    }
+
+    @keyframes fall{
+      to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:.2;
+      }
+    }
+
+    @media(max-width:800px){
+      .gallery,.reasons{grid-template-columns:1fr}
+      .photo-card{min-height:420px}
+      .hero-card{padding:44px 22px}
+    }
+  </style>
+</head>
+<body>
+  <div class="floating-hearts" id="hearts"></div>
+
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">A little website made with love</div>
+        <h1>Hey <span class="highlight">Mbalenhle</span> ❤️</h1>
+        <p>
+          You have made my days brighter, my smiles bigger, and my life so much more beautiful.
+          I made this little page because there is something special I want to ask you.
+        </p>
+        <a class="btn btn-primary" href="#our-story">Open My Heart</a>
+      </div>
+    </section>
+
+    <section id="our-story">
+      <h2 class="section-title">Some of My Favourite Moments</h2>
+      <p class="section-subtitle">
+        Replace these pictures and captions with your favourite memories together.
+      </p>
+
+      <div class="gallery">
+        <div class="photo-card"><span>The day I realised you were special</span></div>
+        <div class="photo-card"><span>One of my favourite memories with you</span></div>
+        <div class="photo-card"><span>The smile I never get tired of seeing</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Why I Love You</h2>
+      <p class="section-subtitle">
+        There are countless reasons, but these are only a few.
+      </p>
+
+      <div class="reasons">
+        <article class="reason">
+          <div class="icon">✨</div>
+          <h3>Your Energy</h3>
+          <p>You have a way of making ordinary moments feel unforgettable.</p>
+        </article>
+        <article class="reason">
+          <div class="icon">😊</div>
+          <h3>Your Smile</h3>
+          <p>Your smile brings me peace and makes even difficult days feel lighter.</p>
+        </article>
+        <article class="reason">
+          <div class="icon">💗</div>
+          <h3>Your Heart</h3>
+          <p>I admire your kindness, your strength, and the beautiful person you are.</p>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">A Letter for You</h2>
+      <div class="letter">
+        Dear Mbali,
+        <br><br>
+        Getting to know you has been one of the best things to happen to me. Every conversation,
+        every laugh, and every moment we share makes me appreciate you even more.
+        You are someone I genuinely care about, and I would love the opportunity to create
+        many more memories with you.
+        <br><br>
+        So instead of only sending a normal text, I wanted to do something a little more special.
+        I hope this page shows you how much thought and love I put into asking you this question.
+        <div class="signature">With love,<br>Motheo (the love of your life)</div>
+      </div>
+    </section>
+
+    <section class="proposal">
+      <h2>May I be your boyfriend?</h2>
+      <p>
+        Why am I asking to be your boyfriend? Because I want 
+        to take up the responsibility of being your partner and not just having
+        you as my girlfriend.
+      </p>
+
+      <div class="button-zone" id="buttonZone">
+        <button class="btn btn-primary" id="yesBtn">Yes, absolutely! ❤️</button>
+        <button class="btn" id="noBtn">No</button>
+      </div>
+
+      <div class="result" id="result">
+        <img src="new_employee.gif">
+        You are now my elite employee! 💕
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Made with love by Motheo • [Special Date]
+  </footer>
+
+  <script>
+    const hearts = document.getElementById('hearts');
+
+    for(let i = 0; i < 22; i++){
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = Math.random() > .5 ? '❤️' : '💕';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = (7 + Math.random() * 8) + 's';
+      heart.style.animationDelay = (-Math.random() * 12) + 's';
+      heart.style.fontSize = (14 + Math.random() * 20) + 'px';
+      hearts.appendChild(heart);
+    }
+
+    const noBtn = document.getElementById('noBtn');
+    const yesBtn = document.getElementById('yesBtn');
+    const result = document.getElementById('result');
+    const zone = document.getElementById('buttonZone');
+
+    const moveNoButton = () => {
+      const maxX = Math.max(0, zone.clientWidth - noBtn.offsetWidth);
+      const maxY = Math.max(0, zone.clientHeight - noBtn.offsetHeight);
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = Math.random() * maxX + 'px';
+      noBtn.style.top = Math.random() * maxY + 'px';
+      noBtn.textContent = ['You pressed the wrong button 🥺','Try again 😄','O ska mbora 😒','Girl say yes! 😫'][Math.floor(Math.random()*4)];
+    };
+
+    noBtn.addEventListener('mouseenter', moveNoButton);
+    noBtn.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    yesBtn.addEventListener('click', () => {
+      result.style.display = 'block';
+      yesBtn.textContent = 'She said YES! 💍❤️';
+      noBtn.style.display = 'none';
+
+      for(let i = 0; i < 120; i++){
+        const piece = document.createElement('div');
+        piece.className = 'confetti';
+        piece.style.left = Math.random() * 100 + 'vw';
+        piece.style.background = ['#ff5f8f','#ffd166','#8bd3dd','#cdb4db','#ffafcc'][Math.floor(Math.random()*5)];
+        piece.style.animationDelay = Math.random() * .8 + 's';
+        piece.style.transform = `rotate(${Math.random()*360}deg)`;
+        document.body.appendChild(piece);
+        setTimeout(() => piece.remove(), 4200);
+      }
+    });
+  </script>
+</body>
+</html>
